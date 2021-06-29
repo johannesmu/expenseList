@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "Lister",
-    "slug": "Lister",
+    "name": "Money Star",
+    "slug": "MoneyStar",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/money_star_logo.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/money_start_splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#e0daa4"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,7 +17,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
@@ -26,7 +26,7 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/money_star_logo.png"
     }
   }
 }
