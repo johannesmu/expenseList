@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState,useEffect} from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants'
 
 import { Dropdown } from './components/Dropdown'
 import {Header} from './components/Header'
+import Theme from './components/Theme'
 
 
 const categories = [
@@ -43,11 +44,14 @@ export default function App() {
           onChangeText={amountChange} 
           placeholder="enter amount"
         />
+        <Text style={styles.label}>Select a category</Text>
         <Dropdown 
           categories={categories} 
           handler={dropdownChange}  
-          placeholder={"select a category"}
         />
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Submit</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -60,7 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   input: {
-    backgroundColor: Theme.tertiaryLight,
+    backgroundColor: Theme.cultured,
     borderWidth: 1,
     borderColor: '#cccccc',
     borderStyle: 'solid',
@@ -68,5 +72,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
+  label: {
+    padding: 5,
+    textAlign: 'center',
+    backgroundColor: Theme.charcoal,
+    color: Theme.silver,
+  },
+  button: {
+    padding: 5,
+    backgroundColor: Theme.charcoal,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: Theme.silver,
+  }
 });
 

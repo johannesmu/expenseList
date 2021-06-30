@@ -13,7 +13,7 @@ export function Header( props ) {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: Theme.primary,
+    backgroundColor: Theme.mindaro,
     padding: 5,
     display: 'flex',
     flexDirection: 'row',

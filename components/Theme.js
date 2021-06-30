@@ -1,9 +1,8 @@
 export const Theme = {
-  primary: 'hsl(54, 49%, 76%)',
-  secondary: 'hsl(7, 85%, 31%)',
-  secondaryLight: 'hsl(7, 85%, 70%)',
-  tertiary: 'hsl(230, 24%, 35%)',
-  tertiaryMid: 'hsl(230, 24%, 55%)',
-  tertiaryLight: 'hsl(230, 24%, 75%)',
+  grey: 'hsla(192, 4%, 54%, 1)',
+  charcoal: 'hsla(203, 14%, 30%, 1)',
+  mindaro: 'hsla(71, 90%, 68%, 1)',
+  silver: 'hsla(7, 7%, 73%, 1)',
+  cultured: 'hsla(75, 13%, 94%, 1)',
 }
 export default Theme
