@@ -5,7 +5,9 @@ import Constants from 'expo-constants'
 
 import { Dropdown } from './components/Dropdown'
 import {Header} from './components/Header'
-import Theme from './components/Theme'
+import Theme from './components/Theme';
+
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 const categories = [
@@ -24,6 +26,31 @@ export default function App() {
   const[amount, setAmount] = useState()
   const[expenses, setExpenses ] = useState([])
 
+  useEffect( () => {
+    if( expenses.length > 0 ) {
+      AsyncStorage.setItem( 'expensesData' ,JSON.stringify(expenses) )
+      .then( () => { 
+        console.log('data stored')
+      })
+      .catch( (error) => {
+        console.log(error)
+      })
+    }
+    else {
+      AsyncStorage.getItem('expensesData')
+      .then( (value) => {
+        if( value ) {
+          setExpenses( JSON.parse(value) )
+        }
+        else {
+          console.log('no data')
+        }
+      })
+      .catch( (error) => {
+        console.log(error)
+      })
+    }
+  })
 
   const dropdownChange = (value) => {
     setCategory( value )
@@ -39,8 +66,8 @@ export default function App() {
   }
 
   const Renderer = ({item}) => (
-    <TouchableOpacity>
-      <Text>{item.amount}</Text>
+    <TouchableOpacity style={styles.listItem}>
+      <Text style={styles.listItemAmount}>${item.amount}</Text>
       <Text>{item.category}</Text>
     </TouchableOpacity>
   )
@@ -102,6 +129,17 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     color: Theme.silver,
+  },
+  listItem: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10,
+    borderColor: Theme.silver,
+    borderBottomWidth: 1,
+  },
+  listItemAmount: {
+    fontSize: 18
   }
 });
 
