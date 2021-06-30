@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState,useEffect} from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import Constants from 'expo-constants'
 
 import { Dropdown } from './components/Dropdown'
@@ -22,7 +22,7 @@ const categories = [
 export default function App() {
   const[category, setCategory] = useState()
   const[amount, setAmount] = useState()
-  const[expenses, setExpenses ] = useState()
+  const[expenses, setExpenses ] = useState([])
 
 
   const dropdownChange = (value) => {
@@ -32,6 +32,18 @@ export default function App() {
   const amountChange = ( value ) => {
     setAmount( value )
   }
+
+  const addItem = () => {
+    const item = { amount: amount, category: category, id: new Date().getTime() }
+    setExpenses( expenses.concat([item]) )
+  }
+
+  const Renderer = ({item}) => (
+    <TouchableOpacity>
+      <Text>{item.amount}</Text>
+      <Text>{item.category}</Text>
+    </TouchableOpacity>
+  )
   
   return (
     <View style={styles.container}>
@@ -49,9 +61,14 @@ export default function App() {
           categories={categories} 
           handler={dropdownChange}  
         />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={addItem}>
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
+        <FlatList 
+          data={expenses}
+          renderItem={Renderer}
+          keyExtractor={ (item) => item.id }
+        />
       </View>
     </View>
   );
