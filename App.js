@@ -40,7 +40,12 @@ export default function App() {
       AsyncStorage.getItem('expensesData')
       .then( (value) => {
         if( value ) {
-          setExpenses( JSON.parse(value) )
+          const items = JSON.parse(value)
+          items.forEach( (item) => {
+            const str = item.id.toString()
+            item.id = str
+          })
+          setExpenses( items )
         }
         else {
           console.log('no data')
@@ -61,7 +66,7 @@ export default function App() {
   }
 
   const addItem = () => {
-    const item = { amount: amount, category: category, id: new Date().getTime() }
+    const item = { amount: amount, category: category, id: (new Date().getTime()).toString() }
     setExpenses( expenses.concat([item]) )
   }
 
