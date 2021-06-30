@@ -10,6 +10,8 @@ export function Dropdown( props ) {
       items={props.categories} 
       onValueChange={props.handler}
       style={PickerStyle}
+      useNativeAndroidPickerStyle={false}
+      placeholder={{label:"Select a category", value: null }}
       />
     </View>
   )
@@ -25,6 +27,9 @@ const PickerStyle = StyleSheet.create({
     padding: 10,
     backgroundColor: Theme.silver,
     textAlign: 'center',
+    color: 'blue',
   },
-  
+  placeholder: {
+    color: 'red'
+  },
 })
